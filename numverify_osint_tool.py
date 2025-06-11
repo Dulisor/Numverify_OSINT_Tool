@@ -45,7 +45,7 @@ def main():
             print(f"Location: {result.get('location')}")
             print(f"Carrier: {result.get('carrier')}")
             print(f"Line Type: {result.get('line_type')}")
-        con = input("\nThe program has ended. Press \'Y\' if you want to run the programme again: ")
+        con = input("\nThe program has ended. Press \'Y\' if you want to run the program again: ")
         if con == 'Y':
             continue
         else:
