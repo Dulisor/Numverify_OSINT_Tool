@@ -28,7 +28,7 @@ class NumverifyAPI:
 def main():
     api_key = os.getenv("NUMVERIFY_API_KEY")
     numverify = NumverifyAPI(api_key)
-    while 1>0:
+    while True:
         phone_number = input("Enter the phone number to validate (with country code, e.g., +14158586273): ")
         result = numverify.validate_phone_number(phone_number)
         if 'error' in result:
@@ -46,7 +46,7 @@ def main():
             print(f"Carrier: {result.get('carrier')}")
             print(f"Line Type: {result.get('line_type')}")
         con = input("\nThe program has ended. Press \'Y\' if you want to run the program again: ")
-        if con == 'Y':
+        if con == 'Y' or con == 'y':
             continue
         else:
             break
