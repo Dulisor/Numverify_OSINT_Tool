@@ -1,6 +1,5 @@
 import requests
 import os
-from datetime import datetime
 
 __version__ = "1.1.0"
 
