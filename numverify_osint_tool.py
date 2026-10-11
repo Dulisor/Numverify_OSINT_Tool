@@ -1,12 +1,15 @@
 import requests
 import os
+from datetime import datetime
 
-print('''
+__version__ = "1.1.0"
+
+print(rf'''
     _   __                                     _  ____          ____  _____  ____ _   __ ______   ______               __
    / | / /__  __ ____ ___  _   __ ___   _____ (_)/ __/__  __   / __ \/ ___/ /  _// | / //_  __/  /_  __/____   ____   / /
   /  |/ // / / // __ `__ \| | / // _ \ / ___// // /_ / / / /  / / / /\__ \  / / /  |/ /  / /      / /  / __ \ / __ \ / / 
  / /|  // /_/ // / / / / /| |/ //  __// /   / // __// /_/ /  / /_/ /___/ /_/ / / /|  /  / /      / /  / /_/ // /_/ // /  
-/_/ |_/ \__,_//_/ /_/ /_/ |___/ \___//_/   /_//_/   \__, /   \____//____//___//_/ |_/  /_/      /_/   \____/ \____//_/  v1.0
+/_/ |_/ \__,_//_/ /_/ /_/ |___/ \___//_/   /_//_/   \__, /   \____//____//___//_/ |_/  /_/      /_/   \____/ \____//_/  v{__version__}
                                                    /____/                                                               Made by Dulisor''')
 
 class NumverifyAPI:
@@ -45,6 +48,25 @@ def main():
             print(f"Location: {result.get('location')}")
             print(f"Carrier: {result.get('carrier')}")
             print(f"Line Type: {result.get('line_type')}")
+            lines = [
+                    "Phone Number Details:",
+                    f"Number: {result.get('number')}",
+                    f"Valid: {result.get('valid')}",
+                    f"Local Format: {result.get('local_format')}",
+                    f"International Format: {result.get('international_format')}",
+                    f"Country Prefix: {result.get('country_prefix')}",
+                    f"Country Code: {result.get('country_code')}",
+                    f"Country Name: {result.get('country_name')}",
+                    f"Location: {result.get('location')}",
+                    f"Carrier: {result.get('carrier')}",
+                    f"Line Type: {result.get('line_type')}",
+                ]
+            safe_number = "".join(c for c in phone_number if c.isdigit()) or "unknown"
+            country = result.get('country_code') or 'XX'
+            filename = f"{country}_{safe_number}.txt"
+            with open(filename, "w", encoding="UTF-8") as file:
+                file.write("\n".join(lines))            
+            print(f"\nThe Phone Number details have been saved into a {filename} file.")
         con = input("\nThe program has ended. Press \'Y\' if you want to run the program again: ")
         if con == 'Y' or con == 'y':
             continue
